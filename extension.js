@@ -58,7 +58,7 @@ const getNextTime = (times) => {
 const Indicator = GObject.registerClass(
 	class Indicator extends PanelMenu.Button {
 		_init() {
-			super._init(0.0, _('Time Namaz'))
+			super._init(.5, _('Time Namaz'))
 			this._menuLayout = new St.BoxLayout()
 			this.add_actor(this._menuLayout)
 
@@ -125,10 +125,11 @@ const Indicator = GObject.registerClass(
 			const nowMinutes = date.getMinutes()
 
 			const {hours, minutes} = this.nextTime
-			const bufferTime = 2
+			// const {hours, minutes} = {hours: 16, minutes: nowMinutes}
+			const bufferTime = 1
 			const rangeTime = (hours * 60 + minutes) - (nowHours * 60 + nowMinutes)
-			const timeMillisec = (rangeTime + bufferTime) * 1000
-			const checkTime = timeMillisec < 0 ? 0 : timeMillisec
+			const timeMillisec = (rangeTime + bufferTime) * 60 * 1000
+			const checkTime = timeMillisec > 0 ? timeMillisec : 0
 
 			// console.log(hours, minutes, nowHours, nowMinutes)
 
