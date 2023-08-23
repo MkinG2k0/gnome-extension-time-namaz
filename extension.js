@@ -1,14 +1,13 @@
 const GETTEXT_DOMAIN = 'time-namaz-extension'
 
 const {GObject, St, Soup, GLib} = imports.gi
-
 const ExtensionUtils = imports.misc.extensionUtils
 const Main = imports.ui.main
 const PanelMenu = imports.ui.panelMenu
 const PopupMenu = imports.ui.popupMenu
 const Clutter = imports.gi.Clutter
 const ByteArray = imports.byteArray
-
+// const BoxPointer = imports.ui.BoxPointer
 const _ = ExtensionUtils.gettext
 //
 const key = '31045ef5d8786c4b194013e79bc9d246'
@@ -49,7 +48,8 @@ const getNextTime = (times) => {
 	const defaultTime = times[0]
 
 	const nextTime = times.find(({hours, minutes}) => {
-		return nowHours <= hours && nowMinutes <= minutes
+		// && nowMinutes <= minutes
+		return nowHours <= hours
 	})
 	return nextTime || defaultTime
 }
@@ -58,14 +58,20 @@ const getNextTime = (times) => {
 const Indicator = GObject.registerClass(
 	class Indicator extends PanelMenu.Button {
 		_init() {
-			super._init(0.0, _('My Shiny Indicator'))
+			super._init(0.0, _('Time Namaz'))
 			this._menuLayout = new St.BoxLayout()
 			this.add_actor(this._menuLayout)
 
-			this._menuLayout.add(new St.Icon({
+			this.addMenu()
+			this.setTime()
+		}
+
+		addMenu() {
+			this._icon = new St.Icon({
 				icon_name: 'org.buddiesofbudgie.Settings-time-symbolic',
 				style_class: 'system-status-icon',
-			}))
+			})
+			this._menuLayout.add(this._icon)
 
 			// this._menuLayout.add(new St.Label({
 			// 	text: '\uD83D\uDD4B',  // 🕋, warning
@@ -79,14 +85,18 @@ const Indicator = GObject.registerClass(
 			})
 
 			this._menuLayout.add(this._timeLabel)
+		}
 
-			this.setTime()
+		addPopupMenu() {
+			this.menu.removeAll()
 
-			let item = new PopupMenu.PopupMenuItem(_('Show Notification'))
-			item.connect('activate', () => {
-				Main.notify(_('Whatʼs up, folks? 23'))
+			this.times.map(({name, time}) => {
+				let wiki = new PopupMenu.PopupBaseMenuItem()
+				wiki.actor.add_child(
+					new St.Label({text: _(`${name}: ${time}`)}))
+
+				this.menu.addMenuItem(wiki)
 			})
-			this.menu.addMenuItem(item)
 		}
 
 		async setTime() {
@@ -94,6 +104,7 @@ const Indicator = GObject.registerClass(
 			this._timeLabel.text = currentTime.time
 
 			this.timeOut()
+			this.addPopupMenu()
 		}
 
 		async getTime() {
@@ -117,6 +128,9 @@ const Indicator = GObject.registerClass(
 			const bufferTime = 2
 			const rangeTime = (hours * 60 + minutes) - (nowHours * 60 + nowMinutes)
 			const timeMillisec = (rangeTime + bufferTime) * 1000
+			const checkTime = timeMillisec < 0 ? 0 : timeMillisec
+
+			// console.log(hours, minutes, nowHours, nowMinutes)
 
 			console.log('--- timer: ', timeMillisec / 1000)
 
@@ -125,7 +139,7 @@ const Indicator = GObject.registerClass(
 					this._timeLabel.text = time
 				})
 				this.timeOut()
-			}, timeMillisec)
+			}, checkTime)
 
 		}
 
