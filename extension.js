@@ -39,6 +39,7 @@ const getTime = (data, isFullTime = true) => {
 		return {name, minutes, hours: newHours, time: newTime}
 	})
 }
+
 const getNextTime = (times) => {
 	const date = new Date()
 	const nowHours = date.getHours()
@@ -77,7 +78,7 @@ const Indicator = GObject.registerClass(
 
 			this._menuLayout.add(this._timeLabel)
 
-			this.initTime()
+			this.setTime()
 
 			let item = new PopupMenu.PopupMenuItem(_('Show Notification'))
 			item.connect('activate', () => {
@@ -86,12 +87,43 @@ const Indicator = GObject.registerClass(
 			this.menu.addMenuItem(item)
 		}
 
-		async initTime() {
-			const dataTime = await fetchTime()
-			const time = getTime(dataTime)
-			const currentTime = getNextTime(time)
-			console.log(currentTime)
+		async setTime() {
+			const currentTime = await this.getTime()
 			this._timeLabel.text = currentTime.time
+
+			this.timeOut()
+		}
+
+		async getTime() {
+			const dataTime = await fetchTime()
+			this.times = getTime(dataTime)
+			this.nextTime = getNextTime(this.times)
+
+			return this.nextTime
+		}
+
+		timeOut() {
+			if (!this.nextTime) {
+				return
+			}
+
+			const date = new Date()
+			const nowHours = date.getHours()
+			const nowMinutes = date.getMinutes()
+
+			const {hours, minutes} = this.nextTime
+			const bufferTime = 2
+			const rangeTime = (hours * 60 + minutes) - (nowHours * 60 + nowMinutes)
+			const timeMillisec = (rangeTime + bufferTime) * 1000
+
+			console.log('--- timer: ', timeMillisec / 1000)
+
+			this._timeOut = setTimeout(() => {
+				const currentTime = await this.getTime()
+				this._timeLabel.text = currentTime.time
+				this.timeOut()
+			}, timeMillisec)
+
 		}
 
 	})
