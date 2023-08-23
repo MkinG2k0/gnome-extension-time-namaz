@@ -53,6 +53,9 @@ const getNextTime = (times) => {
 	})
 	return nextTime || defaultTime
 }
+const log = (text) => {
+	console.log('\n---\n', text, '\n---')
+}
 //
 
 const Indicator = GObject.registerClass(
@@ -129,11 +132,11 @@ const Indicator = GObject.registerClass(
 			const bufferTime = 1
 			const rangeTime = (hours * 60 + minutes) - (nowHours * 60 + nowMinutes)
 			const timeMillisec = (rangeTime + bufferTime) * 60 * 1000
-			const checkTime = timeMillisec > 0 ? timeMillisec : 0
+			const checkTime = timeMillisec > 0 ? timeMillisec : timeMillisec * -1
 
 			// console.log(hours, minutes, nowHours, nowMinutes)
 
-			console.log('--- timer: ', timeMillisec / 1000)
+			log(timeMillisec / 1000)
 
 			this._timeOut = setTimeout(() => {
 				this.getTime().then(({time}) => {
