@@ -1,4 +1,4 @@
-const GETTEXT_DOMAIN = 'my-indicator-extension'
+const GETTEXT_DOMAIN = 'time-namaz-extension'
 
 const {GObject, St, Soup, GLib} = imports.gi
 
@@ -10,8 +10,10 @@ const Clutter = imports.gi.Clutter
 const ByteArray = imports.byteArray
 
 const _ = ExtensionUtils.gettext
+//
 const key = '31045ef5d8786c4b194013e79bc9d246'
 const url = (city) => `https://muslimsalat.com/${city}.json?key=${key}`
+
 // utils
 const fetchTime = async () => {
 	const httpSession = new Soup.Session()
@@ -119,8 +121,9 @@ const Indicator = GObject.registerClass(
 			console.log('--- timer: ', timeMillisec / 1000)
 
 			this._timeOut = setTimeout(() => {
-				const currentTime = await this.getTime()
-				this._timeLabel.text = currentTime.time
+				this.getTime().then(({time}) => {
+					this._timeLabel.text = time
+				})
 				this.timeOut()
 			}, timeMillisec)
 

@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="161435dc-39e2-4a72-bca9-42a5752cf08d" name="Changes" comment="add next time">
+    <list default="true" id="161435dc-39e2-4a72-bca9-42a5752cf08d" name="Changes" comment="feat: calc next Time">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/extension.js" beforeDir="false" afterPath="$PROJECT_DIR$/extension.js" afterDir="false" />
     </list>
@@ -64,7 +64,7 @@
       <updated>1690543616165</updated>
       <workItem from="1692700305631" duration="10368000" />
       <workItem from="1692785427553" duration="273000" />
-      <workItem from="1692785709859" duration="3599000" />
+      <workItem from="1692785709859" duration="4415000" />
     </task>
     <task id="LOCAL-00001" summary="add next time">
       <option name="closed" value="true" />
@@ -74,7 +74,15 @@
       <option name="project" value="LOCAL" />
       <updated>1692788511275</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feat: calc next Time">
+      <option name="closed" value="true" />
+      <created>1692789336523</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1692789336523</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -93,6 +101,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add next time" />
-    <option name="LAST_COMMIT_MESSAGE" value="add next time" />
+    <MESSAGE value="feat: calc next Time" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: calc next Time" />
   </component>
 </project>
