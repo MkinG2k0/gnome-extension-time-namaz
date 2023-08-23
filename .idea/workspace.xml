@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="161435dc-39e2-4a72-bca9-42a5752cf08d" name="Changes" comment="" />
+    <list default="true" id="161435dc-39e2-4a72-bca9-42a5752cf08d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extension.js" beforeDir="false" afterPath="$PROJECT_DIR$/extension.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,6 +24,7 @@
   &quot;associatedIndex&quot;: 6
 }</component>
   <component name="ProjectId" id="2UKtsIEjMD7KTTPrgzYvOTikPJs" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
     <option name="autoscrollToSource" value="true" />
@@ -36,7 +41,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "ignore_missing_gitignore": "true",
-    "last_opened_file_path": "/home/mk/.local/share/gnome-shell/extensions/freon@UshakovVasilii_Github.yahoo.com",
+    "last_opened_file_path": "/home/mk/.local/share/gnome-shell/extensions/kamai122000@mail.ru",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.tslint": "true",
@@ -60,11 +65,22 @@
       <updated>1690543616165</updated>
       <workItem from="1692700305631" duration="10368000" />
       <workItem from="1692785427553" duration="273000" />
-      <workItem from="1692785709859" duration="1168000" />
+      <workItem from="1692785709859" duration="2780000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
