@@ -1,0 +1,6 @@
+{
+  "description": "",
+  "scripts": {
+    "run": "dbus-run-session -- gnome-shell --nested --wayland"
+  }
+}
